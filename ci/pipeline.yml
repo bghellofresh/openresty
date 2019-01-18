@@ -1,0 +1,42 @@
+resource_types:
+  - name: hf-docker-image
+    type: docker-image
+    privileged: true
+    source:
+      repository: quay.io/hellofresh/docker-image-resource
+      tag: 1.0.0
+
+resources:
+  - name: docker-php-source-code
+    type: git
+    check_every: 6h
+    source:
+      uri: ((repo_uri))
+    branch: master
+
+  - name: source-code
+    type: git
+    check_every: 6h
+    source:
+      uri: https://((defaults.github_token))@github.com/((github_user))/((github_repository_name)).git
+      branch: master
+
+  - name: docker-image
+    type: hf-docker-image
+    source:
+      repository: ((docker_repository))
+      registry_mirror: ((defaults.registry_mirror))
+      username: ((docker_username))
+      password: ((docker_password))
+
+jobs:
+  - name: build-openresty-docker-image
+    plan:
+    - put: docker-image
+      get_params: {skip_download: true}
+      params:
+        build: source-code/openresty
+        dockerfile: source-code/openresty/Dockerfile
+        tag_as_latest: false
+        tag: bionic
+        daemon: ((defaults.docker_daemon))

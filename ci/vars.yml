@@ -1,0 +1,4 @@
+repo_uri: https://github.com/hellofresh/openresty-docker.git
+docker_repository: "quay.io/hellofresh/openresty"
+github_user: hellofresh
+github_repository_name: openresty-docker
