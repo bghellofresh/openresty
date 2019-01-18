@@ -3,7 +3,6 @@ FROM openresty/openresty:bionic
 RUN mkdir -p /usr/local/openresty/nginx/conf/conf.d
 
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
-COPY prometheus.conf /usr/local/openresty/nginx/conf/conf.d/prometheus.conf
 
 RUN opm get knyar/nginx-lua-prometheus
 
