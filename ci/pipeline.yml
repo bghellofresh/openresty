@@ -38,5 +38,5 @@ jobs:
         build: source-code/openresty
         dockerfile: source-code/openresty/Dockerfile
         tag_as_latest: false
-        tag: bionic
+        tag: stable
         daemon: ((defaults.docker_daemon))

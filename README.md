@@ -6,7 +6,7 @@
 
 ## Usage
 
-- Instead of using `nginx:stable` in your kube deployment, use this openresty image with tag `bionic`.
+- Instead of using `nginx:stable` in your kube deployment, use this openresty image with tag `stable`.
 - Include your nginx site configuration as a parameter `siteConf` to the container
 - Metrics will be available on port `9145` and will be consumed by prometheus
 
